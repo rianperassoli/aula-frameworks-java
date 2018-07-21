@@ -1,1 +1,1 @@
-[[{"location":"/run/media/rian/25F410541EE47659/aula-java/boot-web","type":"PROJECT","hints":{"PROJECT_NAME":"boot-web"}},"br.com.rianperassoli:boot-web:0.0.1"],[{"location":"/usr/lib/jvm/java-8-openjdk","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
+[[{"location":"/usr/lib/jvm/java-8-openjdk","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.8"}},"jre:jre:1.8.0"]]
