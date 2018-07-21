@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Pessoa {
@@ -14,9 +18,12 @@ public class Pessoa {
 	private Long codigo;
 
 	@Column(length=150, nullable=false)
+	@NotEmpty(message="nome deve ser preenchido")
 	private String nome;
 
 	@Column(length=11)
+	@Size(max=11, message="tamanho não pode ultrapassar 11")
+	//@CPF
 	private String cpf;
 	
 	

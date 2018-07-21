@@ -2,12 +2,16 @@ package br.com.rianperassoli.bootweb.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,14 +26,31 @@ public class PessoaController {
 	private PessoaRegra pessoaRegra;
 
 	@PostMapping("/salvar")
-	public String salvar(Pessoa pessoa) {
-
+	public String salvar(@Valid Pessoa pessoa, BindingResult erros) {
+		
+		if (erros.hasErrors()) {
+			return "pessoa/novo";
+		}
+		
 		pessoaRegra.salvar(pessoa);
 
 		return "redirect:/pessoa/listar";
 
 	}
 
+	@PostMapping("/alterar")
+	public String alterar(@Valid Pessoa pessoa, BindingResult erros) {
+		
+		if (erros.hasErrors()) {
+			return "pessoa/visualiza";
+		}
+		
+		pessoaRegra.salvar(pessoa);
+
+		return "redirect:/pessoa/listar";
+
+	}
+	
 	@GetMapping("/listar")
 	public String listar(Model model) {
 		//Torna a lista de pessoa acessível no JSP
@@ -48,7 +69,7 @@ public class PessoaController {
 	public String deletar(@PathVariable("codigo") Long codigo) {
 		pessoaRegra.delete(new Pessoa(codigo));
 
-		return "redirect:/pessoa/listar";
+		return "redirect:pessoa/listar";
 	}
 	
 	@GetMapping("/visualiza/{codigo}")

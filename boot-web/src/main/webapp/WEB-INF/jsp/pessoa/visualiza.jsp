@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="/pessoa/salvar" method="post">
+	<form action="/pessoa/alterar" method="post">
 	
 		<input type="hidden" name="codigo" value="${pessoa.codigo}" />
 
