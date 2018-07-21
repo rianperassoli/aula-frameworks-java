@@ -39,4 +39,9 @@ public class PessoaPadrao implements PessoaRegra {
 		return pessoaRepository.porCPF(cpf);
 	}
 
+	@Override
+	public Pessoa buscarPorCodigo(Long codigo) {
+		return pessoaRepository.findById(codigo).orElse(new Pessoa());
+	}
+
 }
