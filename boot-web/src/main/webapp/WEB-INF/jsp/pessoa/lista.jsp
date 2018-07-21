@@ -19,6 +19,7 @@
 				<th>Código</th>
 				<th>Nome</th>
 				<th>CPF</th>
+				<th>Naturalidade</th>
 			</tr>
 		</thead>
 	
@@ -28,6 +29,7 @@
 					<td><a href="/pessoa/visualiza/${pessoa.codigo}">  ${pessoa.codigo} </a></td>
 					<td>${pessoa.nome}</td>
 					<td>${pessoa.cpf}</td>
+					<td>${pessoa.naturalidade.nome}</td>
 				</tr>	
 			</c:forEach>
 		</tbody>

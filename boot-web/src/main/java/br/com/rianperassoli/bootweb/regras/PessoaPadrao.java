@@ -44,4 +44,10 @@ public class PessoaPadrao implements PessoaRegra {
 		return pessoaRepository.findById(codigo).orElse(new Pessoa());
 	}
 
+	@Override
+	public List<Pessoa> dadosGrid() {
+		// TODO Auto-generated method stub
+		return pessoaRepository.dadosGrid();
+	}
+
 }

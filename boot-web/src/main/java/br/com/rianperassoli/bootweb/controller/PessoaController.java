@@ -11,12 +11,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.rianperassoli.bootweb.model.Pessoa;
 import br.com.rianperassoli.bootweb.regras.PessoaRegra;
+import br.com.rianperassoli.bootweb.repository.CidadeRepository;
 
 @Controller
 @RequestMapping("/pessoa")
@@ -24,6 +24,8 @@ public class PessoaController {
 
 	@Autowired
 	private PessoaRegra pessoaRegra;
+	
+	@Autowired CidadeRepository cidadeRepository;
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Pessoa pessoa, BindingResult erros) {
@@ -54,14 +56,16 @@ public class PessoaController {
 	@GetMapping("/listar")
 	public String listar(Model model) {
 		//Torna a lista de pessoa acessível no JSP
-		model.addAttribute("pessoas", pessoaRegra.listar());
+		model.addAttribute("pessoas", pessoaRegra.dadosGrid());
 
 		return "pessoa/lista"; //caminho + nome do JSP que será renderizado para a tela
 
 	}
 	
 	@GetMapping("/novo")
-	public String novo() {
+	public String novo(Model model) {
+		model.addAttribute("cidades", cidadeRepository.findAll());
+		
 		return "/pessoa/novo";
 	}
 
@@ -75,6 +79,7 @@ public class PessoaController {
 	@GetMapping("/visualiza/{codigo}")
 	public String visualizar(@PathVariable("codigo") Long codigo, Model model) {
 		
+		model.addAttribute("cidades", cidadeRepository.findAll());
 		model.addAttribute("pessoa", pessoaRegra.buscarPorCodigo(codigo));
 		
 		return "/pessoa/visualiza";

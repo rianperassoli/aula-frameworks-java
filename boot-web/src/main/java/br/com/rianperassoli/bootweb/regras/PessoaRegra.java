@@ -18,4 +18,6 @@ public interface PessoaRegra {
 	
 	Pessoa buscarPorCodigo(Long codigo);
 	
+	List<Pessoa> dadosGrid();
+	
 }

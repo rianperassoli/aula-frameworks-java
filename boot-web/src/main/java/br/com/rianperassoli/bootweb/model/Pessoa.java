@@ -2,13 +2,13 @@ package br.com.rianperassoli.bootweb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Pessoa {
@@ -26,8 +26,10 @@ public class Pessoa {
 	//@CPF
 	private String cpf;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Cidade naturalidade;
 	
-	
+		
 	public Pessoa(){
 		
 	}	
@@ -72,5 +74,13 @@ public class Pessoa {
 	@Override
 	public String toString() {
 		return "Pessoa [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + "]";
+	}
+
+	public Cidade getNaturalidade() {
+		return naturalidade;
+	}
+
+	public void setNaturalidade(Cidade naturalidade) {
+		this.naturalidade = naturalidade;
 	}
 }
